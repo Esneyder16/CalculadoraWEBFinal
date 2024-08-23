@@ -19,10 +19,10 @@ namespace CalculadoraWebFinal.Vista
             LlenarGrid();
         }
 
-        protected void Agregar_Click(object sender, EventArgs e)
+        protected void btnAgregar_Click(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario();
-            if(UsuarioBLL.Agregar(TextCodigo.Text)> 0) LlenarGrid();
+            if (UsuarioBLL.Agregar(TextCodigo.Text) > 0) LlenarGrid();
         }
         protected void LlenarGrid()
         {
@@ -49,9 +49,5 @@ namespace CalculadoraWebFinal.Vista
             }
         }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

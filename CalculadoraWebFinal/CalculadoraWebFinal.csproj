@@ -76,6 +76,7 @@
     <Compile Include="Datos\DBconexion.cs" />
     <Compile Include="Datos\Operacion_Dal.cs" />
     <Compile Include="Datos\Usuario_Dal.cs" />
+    <Compile Include="Logica\OperacionBLL.cs" />
     <Compile Include="Logica\UsuarioBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Vista\Operacion.aspx.cs">
