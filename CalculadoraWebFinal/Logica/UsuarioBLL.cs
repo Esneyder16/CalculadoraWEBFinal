@@ -1,6 +1,7 @@
 ﻿using CalculadoraWebFinal.Datos;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
@@ -37,5 +38,22 @@ namespace CalculadoraWebFinal.Logica
 
             return retorno;
         }
+
+
+
+    internal static int Eliminar(int id)
+    {
+        string constr = ConfigurationManager.ConnectionStrings["CalculadoraconnectionString"].ConnectionString;
+        using (SqlConnection con = new SqlConnection(constr))
+        {
+            using (SqlCommand cmd = new SqlCommand("DELETE FROM Usuarios WHERE Id = @Id"))
+            {
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Connection = con;
+                con.Open();
+                return cmd.ExecuteNonQuery();
+            }
+        }
     }
+
 }

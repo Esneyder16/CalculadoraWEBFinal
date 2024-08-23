@@ -16,38 +16,50 @@ namespace CalculadoraWebFinal.Vista
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LlenarGrid();
+            if (!IsPostBack)
+            {
+                LlenarGrid();
+            }
         }
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Usuario usuario = new Usuario();
-            if (UsuarioBLL.Agregar(TextCodigo.Text) > 0) LlenarGrid();
+            if (UsuarioBLL.Agregar(TextCodigo.Text) > 0)
+            {
+                LlenarGrid();
+            }
         }
+
         protected void LlenarGrid()
         {
-            string nombre = "";
             DataTable dt = new DataTable();
             string constr = ConfigurationManager.ConnectionStrings["CalculadoraconnectionString"].ConnectionString;
             using (SqlConnection con = new SqlConnection(constr))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT *  FROM Usuarios"))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Usuarios"))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter())
                     {
                         cmd.Connection = con;
                         sda.SelectCommand = cmd;
-                        using (dt)
-                        {
-                            sda.Fill(dt);
-                            GridView1.DataSource = dt;
-                            GridView1.DataBind();
-                        }
+                        sda.Fill(dt);
+                        GridView1.DataSource = dt;
+                        GridView1.DataBind();
                     }
                 }
-
             }
         }
 
+        protected void GridView1_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "Eliminar")
+            {
+                int id = Convert.ToInt32(e.CommandArgument);
+                if (UsuarioBLL.Eliminar(id) > 0)
+                {
+                    LlenarGrid();
+                }
+            }
+        }
     }
 }

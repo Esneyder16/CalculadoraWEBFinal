@@ -3,7 +3,17 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Catalogo de Usuario</h1>
-    <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" OnRowCommand="GridView1_RowCommand">
+        <Columns>
+            <asp:BoundField DataField="Id" HeaderText="ID" ReadOnly="True" />
+            <asp:BoundField DataField="Nombre" HeaderText="Nombre" />
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:Button ID="btnEliminar" runat="server" CommandName="Eliminar" CommandArgument='<%# Eval("Id") %>' Text="Eliminar" />
+                </ItemTemplate>
+            </asp:TemplateField>
+        </Columns>
+    </asp:GridView>
     <asp:Label ID="Label1" runat="server" Text="Codigo"></asp:Label>
     <asp:TextBox ID="TextCodigo" runat="server"></asp:TextBox>
     <br />
