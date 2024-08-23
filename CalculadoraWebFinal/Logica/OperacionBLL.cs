@@ -33,6 +33,24 @@ namespace CalculadoraWebFinal.Logica
                 }
                 return resultado;
             }
+            public static int Eliminar(int id)
+            {
+                int resultado = 0;
+                string constr = ConfigurationManager.ConnectionStrings["CalculadoraconnectionString"].ConnectionString;
+                using (SqlConnection con = new SqlConnection(constr))
+                {
+                    string query = "DELETE FROM Operaciones WHERE id = @id";
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@id", id);
+
+                        con.Open();
+                        resultado = cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                }
+                return resultado;
+            }
         }
     }
-}
+  }

@@ -56,5 +56,29 @@ namespace CalculadoraWebFinal.Vista
                 }
             }
         }
+
+        protected void btnEliminarOperacion_Click(object sender, EventArgs e)
+        {
+            {
+                int id;
+                if (int.TryParse(TextIdEliminar.Text, out id))
+                {
+                    if (OperacionBLL.Eliminar(id) > 0)
+                    {
+                        LlenarGrid(); // Recargar el GridView después de eliminar
+                    }
+                    else
+                    {
+                        // Manejar el caso donde no se eliminó ningún registro, por ejemplo, mostrar un mensaje de error.
+                        Response.Write("<script>alert('No se pudo eliminar el registro. Por favor, verifique el ID.');</script>");
+                    }
+                }
+                else
+                {
+                    // Manejar el caso donde el ID no es válido, por ejemplo, mostrar un mensaje de error.
+                    Response.Write("<script>alert('Por favor, ingrese un ID válido.');</script>");
+                }
+            }
+        }
     }
 }

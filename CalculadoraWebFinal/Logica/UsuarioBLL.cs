@@ -26,7 +26,7 @@ namespace CalculadoraWebFinal.Logica
                     retorno = cmd.ExecuteNonQuery();
                 }
             }
-            catch (System.Data.SqlClient.SqlException ex)
+            catch (System.Data.SqlClient.SqlException)
             {
                 retorno = -1;
             }

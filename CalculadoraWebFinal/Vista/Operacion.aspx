@@ -10,7 +10,9 @@
             <asp:Label ID="lblResultado" runat="server" Text="Resultado:"></asp:Label>
             <asp:TextBox ID="TextResultado" runat="server"></asp:TextBox>
             <asp:Button ID="btnAgregar" runat="server" Text="Agregar Operación" OnClick="btnAgregar_Click" />
-            <br />
+            <asp:TextBox  ID="TextIdEliminar" runat="server" Placeholder="Ingrese el ID a eliminar"></asp:TextBox>
+            <asp:Button ID="btnEliminarOperacion" runat="server" Text="Eliminar Operación" OnClick="btnEliminarOperacion_Click" />
+             <br />
             <br />
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="True"></asp:GridView>
 </asp:Content>
