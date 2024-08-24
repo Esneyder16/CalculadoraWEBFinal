@@ -41,19 +41,20 @@ namespace CalculadoraWebFinal.Logica
 
 
 
-    internal static int Eliminar(int id)
-    {
-        string constr = ConfigurationManager.ConnectionStrings["CalculadoraconnectionString"].ConnectionString;
-        using (SqlConnection con = new SqlConnection(constr))
+        internal static int Eliminar(int id)
         {
-            using (SqlCommand cmd = new SqlCommand("DELETE FROM Usuarios WHERE Id = @Id"))
+            string constr = ConfigurationManager.ConnectionStrings["CalculadoraconnectionString"].ConnectionString;
+            using (SqlConnection con = new SqlConnection(constr))
             {
-                cmd.Parameters.AddWithValue("@Id", id);
-                cmd.Connection = con;
-                con.Open();
-                return cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand("DELETE FROM Usuarios WHERE Id = @Id"))
+                {
+                    cmd.Parameters.AddWithValue("@Id", id);
+                    cmd.Connection = con;
+                    con.Open();
+                    return cmd.ExecuteNonQuery();
+                }
             }
         }
-    }
 
+    }
 }
